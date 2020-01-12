@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <style>
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      input:checked+.slider {
+        background-color: #2196F3;
+      }
+
+      input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+      }
+
+      input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <h1>Click a song to play/pause it:</h1>
+    <hr>
+    <p onclick="playPause(0)">Minecraft: 4:20</p><audio>
+      <source src="calm1.ogg" type="audio/ogg"></audio><br>
+    <p onclick="playPause(1)">Clark: 3:21</p><audio>
+      <source src="calm2.ogg" type="audio/ogg"></audio><br>
+    <p onclick="playPause(2)">Sweden: 3:49</p><audio>
+      <source src="calm3.ogg" type="audio/ogg"></audio><br>
+    <p onclick="playPause(3)">Subwoofer Lullaby: 3:29</p><audio>
+      <source src="hal1.ogg" type="audio/ogg"></audio><br>
+    <p onclick="playPause(4)">Living Mice: 3:08</p><audio>
+      <source src="hal2.ogg" type="audio/ogg"></audio><br>
+    <p onclick="playPause(5)">Haggstrom 3:11</p><audio>
+      <source src="hal3.ogg" type="audio/ogg"></audio><br>
+    <p onclick="playPause(6)">Danny: 4:15</p><audio>
+      <source src="hal4.ogg" type="audio/ogg"></audio><br>
+    <p onclick="playPause(7)">Key: 1:01</p><audio>
+      <source src="nuance1.ogg" type="audio/ogg"></audio><br>
+    <p onclick="playPause(8)">Oxygène: 1:09</p><audio>
+      <source src="nuance2.ogg" type="audio/ogg"></audio><br>
+    <p onclick="playPause(9)">Dry Hands: 1:08</p><audio>
+      <source src="piano1.ogg" type="audio/ogg"></audio><br>
+    <p onclick="playPause(10)">Wet Hands: 1:29</p><audio>
+      <source src="piano2.ogg" type="audio/ogg"></audio><br>
+    <p onclick="playPause(11)">Mice on Venus: 4:40</p><audio>
+      <source src="piano3.ogg" type="audio/ogg"></audio><br>
+    <p>Seconds: </p><input style="display: none" type="text" id="time"><p>Change Time: Enter custom time(in seconds) and press Enter</p><button style="display: none" id="reset">Start from beginning</button>
+    <p>Allow Overlap Songs: </p><label class="switch">
+      <input id="overlap" type="checkbox">
+      <span class="slider round"></span>
+    </label>
+    <script>
+      var songclicked;
+      var p;
+      var c;
+      var nooverlap = true;
+
+      function playPause(index) {
+        var song = document.getElementsByTagName('audio')[index];
+        if (song.paused) {
+          if (nooverlap) {
+            for (c = 0; c < 12; c++) {
+              document.getElementsByTagName("audio")[c].pause();
+              document.getElementsByTagName("p")[c].style.color = "black"
+            }
+          }
+          song.play();
+          songclicked = song;
+          document.getElementsByTagName('p')[index].style.color = "gray";
+          document.getElementById("time").style.display = "block";
+          document.getElementById("reset").style.display = "block";
+          p = index;
+          showTime(index);
+        } else {
+          song.pause();
+          songclicked = song;
+          p = index;
+          document.getElementsByTagName('p')[index].style.color = "black";
+        }
+      }
+
+      function showTime(index) {
+        if (nooverlap) {
+          document.getElementById("time").value = Math.round(document.getElementsByTagName("audio")[index].currentTime);
+        } else {
+          document.getElementById("time").value = "To Use Time turn off the switch"
+        }
+        if (!document.getElementsByTagName("audio")[index].paused) {
+          setTimeout(function() {
+            showTime(index)
+          }, 1000);
+        }
+      }
+      document.getElementById("time").addEventListener("keyup", function(e) {
+        if (e.keyCode == "13" && nooverlap) {
+          songclicked.currentTime = document.getElementById("time").value;
+        }
+      });
+      document.getElementById("reset").addEventListener("click", function() {
+        if (nooverlap) {
+          songclicked.currentTime = "0";
+          songclicked.play();
+          document.getElementsByTagName("p")[p].style.color = "gray";
+          showTime(p);
+        }
+      });
+      document.getElementById("overlap").addEventListener("click", function() {
+        if (document.getElementById("overlap").checked) {
+          var password = prompt("Enter Password to Enable Overlapping Songs");
+          if (password != "1A2B3C") {
+            document.getElementById("overlap").checked = false;
+            if (password != null) {
+              alert("Wrong Password")
+            }
+          } else {
+            nooverlap = false
+          }
+        } else {
+          nooverlap = true
+          for (c = 0; c < 12; c++) {
+            document.getElementsByTagName("audio")[c].pause();
+            document.getElementsByTagName("p")[c].style.color = "black"
+          }
+        }
+      });
+
+    </script>
+  </body>
+
+</html>
