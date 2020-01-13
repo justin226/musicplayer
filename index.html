@@ -67,38 +67,95 @@
   </head>
 
   <body>
-    <h1>Click a Minecraft song to play/pause it:</h1>
-    <hr>
-    <p onclick="playPause(0)">Minecraft: 4:20</p><audio>
-      <source src="calm1.ogg" type="audio/ogg"></audio><br>
-    <p onclick="playPause(1)">Clark: 3:21</p><audio>
-      <source src="calm2.ogg" type="audio/ogg"></audio><br>
-    <p onclick="playPause(2)">Sweden: 3:49</p><audio>
-      <source src="calm3.ogg" type="audio/ogg"></audio><br>
-    <p onclick="playPause(3)">Subwoofer Lullaby: 3:29</p><audio>
-      <source src="hal1.ogg" type="audio/ogg"></audio><br>
-    <p onclick="playPause(4)">Living Mice: 3:08</p><audio>
-      <source src="hal2.ogg" type="audio/ogg"></audio><br>
-    <p onclick="playPause(5)">Haggstrom 3:11</p><audio>
-      <source src="hal3.ogg" type="audio/ogg"></audio><br>
-    <p onclick="playPause(6)">Danny: 4:15</p><audio>
-      <source src="hal4.ogg" type="audio/ogg"></audio><br>
-    <p onclick="playPause(7)">Key: 1:01</p><audio>
-      <source src="nuance1.ogg" type="audio/ogg"></audio><br>
-    <p onclick="playPause(8)">Oxygène: 1:09</p><audio>
-      <source src="nuance2.ogg" type="audio/ogg"></audio><br>
-    <p onclick="playPause(9)">Dry Hands: 1:08</p><audio>
-      <source src="piano1.ogg" type="audio/ogg"></audio><br>
-    <p onclick="playPause(10)">Wet Hands: 1:29</p><audio>
-      <source src="piano2.ogg" type="audio/ogg"></audio><br>
-    <p onclick="playPause(11)">Mice on Venus: 4:40</p><audio>
-      <source src="piano3.ogg" type="audio/ogg"></audio><br>
-    <p>Seconds: </p><input style="display: none" type="text" id="time"><p>Change Time: Enter custom time(in seconds) and press Enter</p><button style="display: none" id="reset">Start from beginning</button>
-    <p>Allow Overlap Songs: </p><label class="switch">
-      <input id="overlap" type="checkbox">
-      <span class="slider round"></span>
-    </label>
+    <div id="lock">
+      Justin Fu has enforced a lock on this site to prevent unauthorized people accessing Justin Fu's site. To gain access, enter the password.
+      <input type="password" id="password">
+      <input type="submit" id="unlock" value="Submit">
+      <span style="color: red" id="unlockable"></span>
+    </div>
+    <div id="game" style="display: none">
+      <h1>Click a Minecraft song to play/pause it:</h1>
+      <hr>
+      <p onclick="playPause(0)">Minecraft: 4:20</p><audio>
+        <source src="calm1.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(1)">Clark: 3:21</p><audio>
+        <source src="calm2.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(2)">Sweden: 3:49</p><audio>
+        <source src="calm3.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(3)">Subwoofer Lullaby: 3:29</p><audio>
+        <source src="hal1.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(4)">Living Mice: 3:08</p><audio>
+        <source src="hal2.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(5)">Haggstrom 3:11</p><audio>
+        <source src="hal3.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(6)">Danny: 4:15</p><audio>
+        <source src="hal4.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(7)">Key: 1:01</p><audio>
+        <source src="nuance1.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(8)">Oxygène: 1:09</p><audio>
+        <source src="nuance2.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(9)">Dry Hands: 1:08</p><audio>
+        <source src="piano1.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(10)">Wet Hands: 1:29</p><audio>
+        <source src="piano2.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(11)">Mice on Venus: 4:40</p><audio>
+        <source src="piano3.ogg" type="audio/ogg"></audio><br>
+      <p>Seconds: </p><input style="display: none" type="text" id="time">
+      <p>Change Time: Enter custom time(in seconds) and press Enter</p><button style="display: none" id="reset">Start from beginning</button>
+      <p>Allow Overlap Songs: </p><label class="switch">
+        <input id="overlap" type="checkbox">
+        <span class="slider round"></span>
+      </label>
+      <button style="color: red" id="exit">
+        Exit
+      </button>
+    </div>
     <script>
+      checkLock();
+
+      function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      }
+
+      function checkLock() {
+        c = getCookie("locked");
+        if (c !== "false") {
+          document.getElementById("game").style.display = "none";
+          document.getElementById("lock").style.display = "block";
+        } else {
+          document.getElementById("lock").style.display = "none";
+          document.getElementById("game").style.display = "block";
+          document.getElementById("password").value = "";
+          document.getElementById("unlockable").innerHTML = "";
+        }
+      }
+      document.getElementById("unlock").addEventListener("click", function() {
+        if (document.getElementById("password").value === "password01") {
+          document.getElementById("game").style.display = "block";
+          document.getElementById("lock").style.display = "none";
+          document.cookie = "locked=false";
+          document.getElementById("password").value = "";
+          document.getElementById("unlockable").innerHTML = "";
+        } else {
+          document.getElementById("unlockable").innerHTML = "Wrong";
+        }
+      });
+      document.getElementById("exit").addEventListener("click", function() {
+        document.cookie = "locked=true";
+        checkLock();
+      });
       var songclicked;
       var p;
       var c;
