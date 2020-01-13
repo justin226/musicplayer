@@ -100,7 +100,7 @@
         <source src="piano2.ogg" type="audio/ogg"></audio><br>
       <p onclick="playPause(11)">Mice on Venus: 4:40</p><audio>
         <source src="piano3.ogg" type="audio/ogg"></audio><br>
-      <p>Seconds: </p><input style="display: none" type="text" id="time">
+      <p>Seconds: </p><input style="display: none; width: 500px" type="text" id="time">
       <p>Change Time: Enter custom time(in seconds) and press Enter</p><button style="display: none" id="reset">Start from beginning</button>
       <p>Allow Overlap Songs: </p><label class="switch">
         <input id="overlap" type="checkbox">
@@ -189,7 +189,7 @@
         if (nooverlap) {
           document.getElementById("time").value = Math.round(document.getElementsByTagName("audio")[index].currentTime);
         } else {
-          document.getElementById("time").value = "To Use Time turn off the switch"
+          document.getElementById("time").value = "To Use Time Settings toggle off \"Allow Overlap Songs\""
         }
         if (!document.getElementsByTagName("audio")[index].paused) {
           setTimeout(function() {
