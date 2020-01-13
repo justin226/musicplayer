@@ -101,8 +101,20 @@
         <source src="piano1.ogg" type="audio/ogg"></audio><br>
       <p onclick="playPause(10)">Wet Hands: 1:29</p><audio>
         <source src="piano2.ogg" type="audio/ogg"></audio><br>
-      <p onclick="playPause(11)">Mice on Venus: 4:40</p><audio>
-        <source src="piano3.ogg" type="audio/ogg"></audio><br>
+      <span>More</span><br>
+      <span>Creative Music</span>
+      <p onclick="playPause(11)">Biome Fest: 6:22</p><audio>
+        <source src="creative/creative1.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(12)">Blind Spots: 5:42</p><audio>
+        <source src="creative/creative2.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(13)">Haunt Muskie: 6:01</p><audio>
+        <source src="creative/creative1.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(14)">Aria Math: 5:09</p><audio>
+        <source src="creative/creative4.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(15)">Dreiton: 8:17</p><audio>
+        <source src="creative/creative5.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(16)">Taswell: 8:35</p><audio>
+        <source src="creative/creative6.ogg" type="audio/ogg"></audio><br>
       <span>Seconds: </span><input style="display: none; width: 500px" type="text" id="time">
       <span>Change Time: Enter custom time(in seconds) and press Enter</span><button style="display: none" id="reset">Start from beginning</button>
       <span>Allow Overlap Songs: </span>
@@ -170,7 +182,7 @@
         var song = document.getElementsByTagName('audio')[index];
         if (song.paused) {
           if (nooverlap) {
-            for (c = 0; c < 12; c++) {
+            for (c = 0; c < 17; c++) {
               document.getElementsByTagName("audio")[c].pause();
               document.getElementsByTagName("p")[c].style.color = "black"
             }
