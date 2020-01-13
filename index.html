@@ -2,6 +2,9 @@
 <html>
 
   <head>
+    <title>
+      Minecraft Music Player
+    </title>
     <style>
       .switch {
         position: relative;
@@ -102,10 +105,12 @@
         <source src="piano3.ogg" type="audio/ogg"></audio><br>
       <p>Seconds: </p><input style="display: none; width: 500px" type="text" id="time">
       <p>Change Time: Enter custom time(in seconds) and press Enter</p><button style="display: none" id="reset">Start from beginning</button>
-      <p>Allow Overlap Songs: </p><label class="switch">
+      <p>Allow Overlap Songs: </p>
+      <label class="switch">
         <input id="overlap" type="checkbox">
         <span class="slider round"></span>
       </label>
+      <br>
       <button style="color: red" id="exit">
         Exit
       </button>
