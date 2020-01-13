@@ -100,8 +100,8 @@
       <p onclick="playPause(9)">Dry Hands: 1:08</p><audio>
         <source src="piano1.ogg" type="audio/ogg"></audio><br>
       <p onclick="playPause(10)">Wet Hands: 1:29</p><audio>
-        <source src="piano2.ogg" type="audio/ogg"></audio><br>
-      <span>More</span><br>
+        <source src="piano2.ogg" type="audio/ogg"></audio><br><br>
+      <span><strong>More</strong></span><br>
       <span>Creative Music</span>
       <p onclick="playPause(11)">Biome Fest: 6:22</p><audio>
         <source src="creative/creative1.ogg" type="audio/ogg"></audio><br>
@@ -114,7 +114,30 @@
       <p onclick="playPause(15)">Dreiton: 8:17</p><audio>
         <source src="creative/creative5.ogg" type="audio/ogg"></audio><br>
       <p onclick="playPause(16)">Taswell: 8:35</p><audio>
-        <source src="creative/creative6.ogg" type="audio/ogg"></audio><br>
+        <source src="creative/creative6.ogg" type="audio/ogg"></audio><br><br>
+      <span>Nether Music</span><br>
+      <p onclick="playPause(17)">Concrete Halls: 4:19</p><audio>
+        <source src="nether/nether1.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(18)">Dead Voxel: 5:03</p><audio>
+        <source src="nether/nether2.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(19)">Warmth: 3:59</p><audio>
+        <source src="nether/nether3.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(20)">Ballad of the Cats: 4:40</p><audio>
+        <source src="nether/nether4.ogg" type="audio/ogg"></audio><br><br>
+      <span>End Music</span><br>
+      <p onclick="playPause(21)">Boss: 5:44</p><audio>
+        <source src="end/boss.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(22)">Alpha: 10:03</p><audio>
+        <source src="end/credits.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(23)">End: 15:04</p><audio>
+        <source src="nether/nether2.ogg" type="audio/ogg"></audio><br><br>
+      <span>Records/Music Discs</span><br>
+      <p onclick="playPause(24)">11: 1:11</p><audio>
+        <source src="records/11.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(25)">13: 2:58</p><audio>
+        <source src="records/13.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(26)">Blocks: 5:43</p><audio>
+        <source src="records/blocks.ogg" type="audio/ogg"></audio><br>
       <span>Seconds: </span><input style="display: none; width: 500px" type="text" id="time">
       <span>Change Time: Enter custom time(in seconds) and press Enter</span><button style="display: none" id="reset">Start from beginning</button>
       <span>Allow Overlap Songs: </span>
@@ -182,7 +205,7 @@
         var song = document.getElementsByTagName('audio')[index];
         if (song.paused) {
           if (nooverlap) {
-            for (c = 0; c < 17; c++) {
+            for (c = 0; c < 24; c++) {
               document.getElementsByTagName("audio")[c].pause();
               document.getElementsByTagName("p")[c].style.color = "black"
             }
@@ -240,7 +263,7 @@
           }
         } else {
           nooverlap = true
-          for (c = 0; c < 12; c++) {
+          for (c = 0; c < 24; c++) {
             document.getElementsByTagName("audio")[c].pause();
             document.getElementsByTagName("p")[c].style.color = "black"
           }
