@@ -213,6 +213,7 @@
       document.getElementById("time").addEventListener("keyup", function(e) {
         if (e.keyCode == "13" && nooverlap) {
           songclicked.currentTime = document.getElementById("time").value;
+          songclicked.play()
         }
       });
       document.getElementById("reset").addEventListener("click", function() {
