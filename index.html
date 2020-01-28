@@ -70,13 +70,7 @@
   </head>
 
   <body>
-    <div id="lock">
-      Justin Fu has enforced a lock on this site to prevent unauthorized people accessing Justin Fu's site. To gain access, enter the password.
-      <input type="password" id="password">
-      <input type="submit" id="unlock" value="Submit">
-      <span style="color: red" id="unlockable"></span>
-    </div>
-    <div id="game" style="display: none">
+    
       <h1>Click a Minecraft song to play/pause it:</h1>
       <hr>
       <p onclick="playPause(0)">Minecraft: 4:20</p><audio>
@@ -138,6 +132,24 @@
         <source src="records/13.ogg" type="audio/ogg"></audio><br>
       <p onclick="playPause(26)">Blocks: 5:43</p><audio>
         <source src="records/blocks.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(27)">Cat: 3:05</p><audio>
+        <source src="records/cat.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(28)">Chirp: 3:05</p><audio>
+        <source src="records/chirp.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(29)">Far: 2:54</p><audio>
+        <source src="records/far.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(30)">Mall: 3:17</p><audio>
+        <source src="records/mall.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(31)">Mellohi: 1:36</p><audio>
+        <source src="records/mellohi.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(32)">Stal: 2:30</p><audio>
+        <source src="records/stal.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(33)">Strad: 3:08</p><audio>
+        <source src="records/strad.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(34)">Wait: 3:57</p><audio>
+        <source src="records/wait.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(35)">Ward: 4:11</p><audio>
+        <source src="records/blocks.ogg" type="audio/ogg"></audio><br>
       <span>Seconds: </span><input style="display: none; width: 500px" type="text" id="time">
       <span>Change Time: Enter custom time(in seconds) and press Enter</span><button style="display: none" id="reset">Start from beginning</button>
       <span>Allow Overlap Songs: </span>
@@ -146,56 +158,8 @@
         <span class="slider round"></span>
       </label>
       <br>
-      <button style="color: red" id="exit">
-        Exit
-      </button>
-    </div>
     <script>
-      checkLock();
-
-      function getCookie(cname) {
-        var name = cname + "=";
-        var decodedCookie = decodeURIComponent(document.cookie);
-        var ca = decodedCookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-          var c = ca[i];
-          while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-          }
-        }
-        return "";
-      }
-
-      function checkLock() {
-        c = getCookie("locked");
-        if (c !== "false") {
-          document.getElementById("game").style.display = "none";
-          document.getElementById("lock").style.display = "block";
-        } else {
-          document.getElementById("lock").style.display = "none";
-          document.getElementById("game").style.display = "block";
-          document.getElementById("password").value = "";
-          document.getElementById("unlockable").innerHTML = "";
-        }
-      }
-      document.getElementById("unlock").addEventListener("click", function() {
-        if (document.getElementById("password").value === "password01") {
-          document.getElementById("game").style.display = "block";
-          document.getElementById("lock").style.display = "none";
-          document.cookie = "locked=false";
-          document.getElementById("password").value = "";
-          document.getElementById("unlockable").innerHTML = "";
-        } else {
-          document.getElementById("unlockable").innerHTML = "Wrong";
-        }
-      });
-      document.getElementById("exit").addEventListener("click", function() {
-        document.cookie = "locked=true";
-        checkLock();
-      });
+      
       var songclicked;
       var p;
       var c;
@@ -205,7 +169,7 @@
         var song = document.getElementsByTagName('audio')[index];
         if (song.paused) {
           if (nooverlap) {
-            for (c = 0; c < 26; c++) {
+            for (c = 0; c < 35; c++) {
               document.getElementsByTagName("audio")[c].pause();
               document.getElementsByTagName("p")[c].style.color = "black"
             }
@@ -263,7 +227,7 @@
           }
         } else {
           nooverlap = true
-          for (c = 0; c < 24; c++) {
+          for (c = 0; c < 35; c++) {
             document.getElementsByTagName("audio")[c].pause();
             document.getElementsByTagName("p")[c].style.color = "black"
           }
