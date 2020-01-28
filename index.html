@@ -149,7 +149,16 @@
       <p onclick="playPause(34)">Wait: 3:57</p><audio>
         <source src="records/wait.ogg" type="audio/ogg"></audio><br>
       <p onclick="playPause(35)">Ward: 4:11</p><audio>
-        <source src="records/blocks.ogg" type="audio/ogg"></audio><br>
+        <source src="records/blocks.ogg" type="audio/ogg"></audio><br><br>
+    <span>Menu Music</span><br>
+      <p onclick="playPause(36)">Mutation: 3:14</p><audio>
+        <source src="menu/menu1.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(37)">Moog City 2: 3:03</p><audio>
+        <source src="menu/menu2.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(38)">Beginning 2: 3:02</p><audio>
+        <source src="menu/menu3.ogg" type="audio/ogg"></audio><br>
+      <p onclick="playPause(39)">Floating Trees: 4:04</p><audio>
+        <source src="menu/menu4.ogg" type="audio/ogg"></audio><br>
       <span>Seconds: </span><input style="display: none; width: 500px" type="text" id="time">
       <span>Change Time: Enter custom time(in seconds) and press Enter</span><button style="display: none" id="reset">Start from beginning</button>
       <span>Allow Overlap Songs: </span>
@@ -169,7 +178,7 @@
         var song = document.getElementsByTagName('audio')[index];
         if (song.paused) {
           if (nooverlap) {
-            for (c = 0; c < 35; c++) {
+            for (c = 0; c < 40; c++) {
               document.getElementsByTagName("audio")[c].pause();
               document.getElementsByTagName("p")[c].style.color = "black"
             }
@@ -227,7 +236,7 @@
           }
         } else {
           nooverlap = true
-          for (c = 0; c < 35; c++) {
+          for (c = 0; c < 40; c++) {
             document.getElementsByTagName("audio")[c].pause();
             document.getElementsByTagName("p")[c].style.color = "black"
           }
