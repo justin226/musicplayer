@@ -243,6 +243,10 @@
             playPause(songindex + 1);
           }
         }
+        if(e.keyCode == 32) {
+          e.preventDefault();
+          playPause(songindex);
+        }
       });
       document.getElementById("overlap").addEventListener("click", function() {
         if (document.getElementById("overlap").checked) {
