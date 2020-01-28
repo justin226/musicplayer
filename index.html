@@ -219,7 +219,21 @@
       document.getElementById("time").addEventListener("keyup", function(e) {
         if (e.keyCode == "13" && nooverlap) {
           songclicked.currentTime = document.getElementById("time").value;
-          songclicked.play()
+          var song = document.getElementsByTagName('audio')[index];
+          if (nooverlap) {
+            for (c = 0; c < 40; c++) {
+              document.getElementsByTagName("audio")[c].pause();
+              document.getElementsByTagName("p")[c].style.color = "black"
+            }
+          }
+          song.play();
+          songclicked = song;
+          document.getElementsByTagName('p')[index].style.color = "gray";
+          document.getElementById("time").style.display = "block";
+          document.getElementById("reset").style.display = "block";
+          document.getElementById("playpause").style.display = "block";
+          p = index;
+          showTime(index);
         }
       });
       document.getElementById("reset").addEventListener("click", function() {
