@@ -150,7 +150,7 @@
         <source src="records/wait.ogg" type="audio/ogg"></audio><br>
       <p onclick="playPause(35)">Ward: 4:11</p><audio>
         <source src="records/blocks.ogg" type="audio/ogg"></audio><br><br>
-    <span>Menu Music</span><br>
+      <span>Menu Music</span><br>
       <p onclick="playPause(36)">Mutation: 3:14</p><audio>
         <source src="menu/menu1.ogg" type="audio/ogg"></audio><br>
       <p onclick="playPause(37)">Moog City 2: 3:03</p><audio>
@@ -158,7 +158,8 @@
       <p onclick="playPause(38)">Beginning 2: 3:02</p><audio>
         <source src="menu/menu3.ogg" type="audio/ogg"></audio><br>
       <p onclick="playPause(39)">Floating Trees: 4:04</p><audio>
-        <source src="menu/menu4.ogg" type="audio/ogg"></audio><br>
+        <source src="menu/menu4.ogg" type="audio/ogg"></audio><br><br>
+      <button style="display: none" id="playpause">Play/Pause</button>
       <span>Seconds: </span><input style="display: none; width: 500px" type="text" id="time">
       <span>Change Time: Enter custom time(in seconds) and press Enter</span><br><button style="display: none" id="reset">Start from beginning</button>
       <span>Allow Overlap Songs: </span>
@@ -173,8 +174,9 @@
       var p;
       var c;
       var nooverlap = true;
-
+      var songindex;
       function playPause(index) {
+        songindex = index;
         var song = document.getElementsByTagName('audio')[index];
         if (song.paused) {
           if (nooverlap) {
@@ -188,6 +190,7 @@
           document.getElementsByTagName('p')[index].style.color = "gray";
           document.getElementById("time").style.display = "block";
           document.getElementById("reset").style.display = "block";
+          document.getElementById("playpause").style.display = "block";
           p = index;
           showTime(index);
         } else {
@@ -197,7 +200,9 @@
           document.getElementsByTagName('p')[index].style.color = "black";
         }
       }
-
+      document.getElementById("playpause").addEventListener("click", function(){
+        playPause(songindex);
+      });
       function showTime(index) {
         if (nooverlap) {
           document.getElementById("time").value = Math.round(document.getElementsByTagName("audio")[index].currentTime);
