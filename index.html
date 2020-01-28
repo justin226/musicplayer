@@ -174,7 +174,7 @@
       var p;
       var c;
       var nooverlap = true;
-      var songindex;
+      var songindex = 0;
       function playPause(index) {
         songindex = index;
         var song = document.getElementsByTagName('audio')[index];
@@ -227,6 +227,18 @@
           songclicked.play();
           document.getElementsByTagName("p")[p].style.color = "gray";
           showTime(p);
+        }
+      });
+      document.body.addEventListener("keydown", function(e){
+        if(e.keyCode = 38){
+          if(songindex > 0){
+            playPause(songindex - 1);
+          }
+        }
+        if(e.keyCode = 40){
+          if(songindex < 39){
+            playPause(songindex + 1);
+          }
         }
       });
       document.getElementById("overlap").addEventListener("click", function() {
