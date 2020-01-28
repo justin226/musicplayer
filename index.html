@@ -205,7 +205,7 @@
         var song = document.getElementsByTagName('audio')[index];
         if (song.paused) {
           if (nooverlap) {
-            for (c = 0; c < 24; c++) {
+            for (c = 0; c < 26; c++) {
               document.getElementsByTagName("audio")[c].pause();
               document.getElementsByTagName("p")[c].style.color = "black"
             }
@@ -252,7 +252,7 @@
       });
       document.getElementById("overlap").addEventListener("click", function() {
         if (document.getElementById("overlap").checked) {
-          var password = prompt("Enter Password to Enable Overlapping Songs");
+          var password = "1A2B3C";
           if (password != "1A2B3C") {
             document.getElementById("overlap").checked = false;
             if (password != null) {
