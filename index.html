@@ -232,11 +232,13 @@
       document.body.addEventListener("keydown", function(e){
         if(e.keyCode = 38){
           if(songindex > 0){
+            e.preventDefault();
             playPause(songindex - 1);
           }
         }
         if(e.keyCode = 40){
           if(songindex < 39){
+            e.preventDefault();
             playPause(songindex + 1);
           }
         }
