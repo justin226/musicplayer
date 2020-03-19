@@ -265,6 +265,11 @@
           e.stopPropagation();
           playPause(songindex);
         }
+        if(e.keyCode == 8) {
+          e.preventDefault();
+          e.stopPropagation();
+          document.getElementById("reset").click()
+        }
       });
       document.getElementById("overlap").addEventListener("click", function() {
         if (document.getElementById("overlap").checked) {
